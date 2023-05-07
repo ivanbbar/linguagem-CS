@@ -1,0 +1,20 @@
+komprakatuaba() abre
+    variavel textinho: vokabulo gole
+    variavel baze: inteiro gole
+    variavel altura: inteiro gole
+    variavel area: inteiro gole;
+
+    textinho = "a area é: " gole
+    baze = 26 gole
+    altura = 1 gole
+    area = base * altura gole
+
+    kaso (area == 13) abre
+        komunikar("confirma")
+    vira
+    kaso_nao abre
+        komunikar(textinho) gole
+        komunikar(area) gole
+    vira
+vira
+

@@ -54,43 +54,37 @@ DIGIT: dígitos de 0 a 9
 
 ```javaScript
 
-PROGRAM = { STATEMENT | FUNCTION };
+PROGRAM = "komprakatuaba", "(", ")", BLOCK;
 
-STATEMENT = (EXPRESSION | STDOUT | IF_STATEMENT | WHILE_STATEMENT | CONST_DECLARATION), "GOLE";
+STATEMENT =  (((λ | ASSIGNMENT | PRINT  | VAR | RETURN), "gole") | (BLOCK | IF_STATEMENT | WHILE_STATEMENT));
 
-BLOCK = "ABRE", [STATEMENT, { STATEMENT }], "VIRA";
+BLOCK = ("abre", STATEMENT, "vira" | "abre" , "vira");
 
-EXPRESSION = SIMPLE_EXPRESSION, [COMPARISON_OPERATOR, SIMPLE_EXPRESSION];
+EXPRESSION = SIMPLE_EXPRESSION , {("<" | ">" | "==" | ".") , SIMPLE_EXPRESSION };
 
-SIMPLE_EXPRESSION = TERM, { ("+" | "-"), TERM };
+SIMPLE_EXPRESSION = TERM, { ("+" | "-" | "ou"), TERM };
 
-TERM = FACTOR, { ("*" | "/"), FACTOR };
+TERM = FACTOR, { ("*" | "/" | "e"), FACTOR };
 
-FACTOR = IDENTIFIER | "(", EXPRESSION, ")" | NUMBER | STRING | FUNCTION_CALL;
+FACTOR = NUMBER | STRING | IDENTIFIER | (("+" | "-" | "!"), FACTOR) | ("(", EXPRESSION, ")") | READ;
 
-ID
-ENTIFIER = LETTER, { LETTER | DIGIT | "_" };
+IDENTIFIER = LETTER, { LETTER | DIGIT | "_" };
 
-STDOUT = "XAIDA", "(", EXPRESSION, ")";
+STDOUT = "komunikar", "(", EXPRESSION, ")";
 
-CONST_DECLARATION = "XONSTANTE", IDENTIFIER, "=", EXPRESSION, "gole";
+VAR_TYPE = ("inteiro" | "vokabulo")
 
+DECLARATION = (IDENTIFIER, ",", VAR_TYPE | IDENTIFIER, ",", DECLARATION)
 
-FUNCTION_CALL = IDENTIFIER, "(", [EXPRESSION, { ",", EXPRESSION }], ")";
+WHILE_STATEMENT = "enquanto", "(", EXPRESSION, ")", BLOCK;
 
-FUNCTION = "FUNXAO", IDENTIFIER, ":", [FUNCTION_PARAM_LIST], BLOCK;
+IF_STATEMENT = "kaso", "(", EXPRESSION, ")", BLOCK, ELSE_STATEMENT;
 
-FUNCTION_PARAM_LIST = [FUNCTION_PARAM, { ",", FUNCTION_PARAM }];
+ELSE_STATEMENT = ("kaso_nao", BLOCK)
 
-FUNCTION_PARAM = "PARAMETRO", IDENTIFIER;
+RETURN = "entregue" , RELEXPRESSION;
 
-
-
-WHILE_STATEMENT = "ENQUANTO", "(", EXPRESSION, ")", BLOCK;
-
-IF_STATEMENT = "XE", "(", EXPRESSION, ")", BLOCK, ["XENAO", BLOCK];
-
-
+READ = "kaptar", "(", ")";
 
 CHARACTER = LETTER | DIGIT | MATH_OPERATOR | SYMBOL;
 
@@ -98,9 +92,9 @@ MATH_OPERATOR = "+" | "-" | "/" | "*";
 
 COMPARISON_OPERATOR = "<" | "<=" | ">" | ">=" | "==" | "!=";
 
-SYMBOL = "." | "_" | "@" | "#" | "!" | "&" | "(" | ")" | "{" | "}" | "[" | "]" | "GOLE" | "ABRE" | "VIRA";
+SYMBOL = "." | "_" | "@" | "#" | "!" | "&" | "(" | ")" | "{" | "}" | "[" | "]";
 
-NUMBER = DIGIT, { DIGIT }, [".", DIGIT, {DIGIT}];
+NUMBER = DIGIT, { DIGIT };
 
 STRING = '"', { CHARACTER }, '"';
 
@@ -110,29 +104,39 @@ LETTER = ( a | b | d | e | ... | q | r | t | u | ... | z ) | ( A | B | D | E | .
 
 ```
 
-
 ## Exemplos
 
 ```javaScript
-XAIDA("zandra zilvia zubmizza xervizal xervia xatixfeita o xovina xinhozinho xebaztião") gole
+komunikar("zandra zilvia zubmizza xervizal xervia xatixfeita o xovina xinhozinho xebaztião") gole
 ```
 
 ```javaScript
-FUNXAO area_retangulo: PARAMETRO baze, PARAMETRO altura, ABRE
-    XONXTANTE area = baze * altura GOLE
-    XAIDA("A area do retangulo eh: ", area) GOLE
-VIRA
+komprakatuaba() abre
+    variavel textinho: vokabulo gole
+    variavel baze: inteiro gole
+    variavel altura: inteiro gole
+    variavel area: inteiro gole;
 
-area_retangulo(5, 10) GOLE
+    textinho = "a area é: " gole
+    baze = 26 gole
+    altura = 1 gole
+    area = base * altura gole
+
+    kaso (area == 13) abre
+        komunikar("confirma")
+    vira
+    kaso_nao abre
+        komunikar(textinho) gole
+        komunikar(area) gole
+    vira
+vira
+
 ```
 
-```javaScript
-FUNXAO par_ou_impar: PARAMETRO numero, ABRE
-    XE(numero % 2 == 0), ABRE
-        XAIDA(numero, " eh par.") GOLE
-    XENAO, ABRE
-        XAIDA(numero, " eh impar.") GOLE
-    VIRA VIRA
-    
-par_ou_impar(10) GOLE
+## Como realizar a análise (Flex-Bison)
+
+```cmd
+yacc -d test.y
+lex test.l
+gcc lex.yy.c y.tab.c -o executable
 ```
