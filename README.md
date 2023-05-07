@@ -107,7 +107,9 @@ LETTER = ( a | b | d | e | ... | q | r | t | u | ... | z ) | ( A | B | D | E | .
 ## Exemplos
 
 ```javaScript
-komunikar("zandra zilvia zubmizza xervizal xervia xatixfeita o xovina xinhozinho xebaztião") gole
+komprakatuaba() abre
+    komunikar("zandra zilvia zubmizza xervizal xervia xatixfeita o xovina xinhozinho xebaztião") gole
+vira
 ```
 
 ```javaScript
