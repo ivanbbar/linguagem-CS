@@ -1,0 +1,16 @@
+komprakatuaba kalkularArea() :: Int 
+    baze:: Int 
+    altura:: Int 
+
+    baze = 10 
+    altura = 5 
+
+    entregue baze * altura 
+gole
+
+komprakatuaba main() :: String 
+    komunikar("A área do retângulo é: ") 
+    komunikar(kalkularArea()) 
+gole
+
+komunikar(main())

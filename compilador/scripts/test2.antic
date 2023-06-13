@@ -1,0 +1,11 @@
+komprakatuaba verifikarParidade(numero:: Int) :: String 
+
+    kazo (numero / 2 * 2 == numero) 
+        komunikar("O número é par.") 
+    kazo_nao 
+        komunikar("O número é ímpar.") 
+    gole
+gole
+
+komunikar(verifikarParidade(11))
+

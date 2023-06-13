@@ -1,0 +1,19 @@
+komprakatuaba kalkularFatorial(numero :: Int) :: Int 
+    fatorial:: Int 
+
+    fatorial = 1 
+
+    enquanto (numero > 1) 
+        fatorial = fatorial * numero 
+        numero = numero - 1 
+    gole
+
+    entregue fatorial 
+gole
+
+komprakatuaba main() :: Int 
+    komunikar("O fatorial do número é: ") 
+    komunikar(kalkularFatorial(5)) 
+gole
+
+komunikar(main())

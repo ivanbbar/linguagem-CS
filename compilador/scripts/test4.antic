@@ -1,0 +1,12 @@
+komprakatuaba kalkularMedia() :: Int 
+    numero1:: Int 
+    numero2:: Int 
+
+    numero1 = 10 
+    numero2 = 20 
+
+    entregue (numero1 + numero2) / 2 
+gole
+
+komunikar("A média dox númerox é: ") 
+komunikar(kalkularMedia()) 

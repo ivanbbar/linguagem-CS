@@ -1,0 +1,9 @@
+komprakatuaba imprimirFraze() :: String
+    fraze:: String 
+    fraze = "Olá, mundo!" 
+
+    komunikar(fraze) 
+gole
+
+komunikar(imprimirFraze())
+
